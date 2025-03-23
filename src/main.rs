@@ -31,11 +31,17 @@ impl Deck {
         cards.shuffle(&mut rng);
         self.cards = cards;
     }
+
+    fn deal(&mut self, n: usize) -> Vec<String> {
+        self.cards.split_off(self.cards.len() - n)
+    }
 }
 
 fn main() {
     let mut deck = Deck::new();
     deck.shuffle();
+    let hand = deck.deal(5);
+    println!("Here is your hand: {:#?}", hand);
 
     println!("Here is your deck: {:#?}", deck);
 }
